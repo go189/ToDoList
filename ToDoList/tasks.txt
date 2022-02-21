@@ -1,0 +1,3 @@
+clean tables
+brush dog
+call boss

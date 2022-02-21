@@ -1,0 +1,41 @@
+﻿<Window x:Class="ToDoList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoList"
+        mc:Ignorable="d"
+        Title="To Do" Height="600" Width="600" ResizeMode="NoResize" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.25*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#FF008AAD"/>
+        <Border Grid.Row="1" Background="#FF004354"/>
+        <Border Grid.Row="2" Background="#FF002833">
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="addTaskTextBox" Margin="10" HorizontalAlignment="Left" Width="450" Height="60" BorderBrush="#FF002833" FontSize="16" TextWrapping="Wrap" AcceptsReturn="True" TabIndex="0"/>
+            <Button x:Name="addButton" Content="Add" Width="100" Height="60" FontSize="36" Background="Black" Foreground="White" BorderBrush="Black" Click="addButton_Click" TabIndex="1" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" IsDefault="True" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="toDoListButton" Content="To-Do List" FontSize="28" Background="Black" Foreground="White" BorderBrush="Black" Width="300" TabIndex="2" Click="toDoListButton_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+            <Button x:Name="doneListButton" Content="Done List" FontSize="28" Background="Black" Foreground="White" BorderBrush="Black" Width="300" TabIndex="3" Click="doneListButton_Click" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+        </StackPanel>
+        <ListView x:Name="toDoList" Grid.Row="2" Margin="15" Background="Black" Foreground="#FF008AAD" FontSize="18" TabIndex="4" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" Cursor="Pen">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Done" Click="ContextMenuDoneClicked"/>
+                    <MenuItem Header="Delete" Click="ContextMenuDeleteClicked"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=.}" TextWrapping="Wrap"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
